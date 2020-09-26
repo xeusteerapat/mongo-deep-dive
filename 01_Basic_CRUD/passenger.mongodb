@@ -93,4 +93,16 @@ db.passengers.find({
   name: 'Sandeep Kumar'
 })
 
+// projection
+// get only name field
+db.passengers.find({}, {
+  name: 1
+})
+
+// if you want to remove _id field
+db.passengers.find({}, {
+  _id: 0,
+  name: 1
+})
+
 db.passengers.find().toArray()
