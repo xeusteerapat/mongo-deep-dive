@@ -105,4 +105,29 @@ db.passengers.find({}, {
   name: 1
 })
 
-db.passengers.find().toArray()
+// update new field with an array
+db.passengers.updateOne({
+  name: 'Albert Twostone',
+}, {
+  $set: {
+    hobbies: [
+      'sports',
+      'cooking',
+      'coding'
+    ]
+  }
+})
+
+// access to the array we have added
+db.passengers.findOne({
+  name: 'Albert Twostone',
+}).hobbies
+
+// find document with hobbies: 'coding'
+// then give all document
+db.passengers.find({
+  hobbies: 'coding'
+})
+
+
+db.passengers.find()
