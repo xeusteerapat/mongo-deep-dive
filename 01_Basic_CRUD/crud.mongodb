@@ -34,6 +34,7 @@ db.flightData.updateOne({
 }, { $set: { marker: 'delete' } })
 
 // update many
+// $set is mean add new property
 db.flightData.updateMany({}, {
   $set: { marker: 'toDelete' }
 })
@@ -43,4 +44,57 @@ db.flightData.deleteMany({
   marker: 'toDelete'
 })
 
+// insert many passing an array
+db.flightData.insertMany([
+  {
+    departureAirport: 'MUC',
+    arrivalAirport: 'SFO',
+    aircraft: 'Airbus A380',
+    distance: 12000,
+    intercontinental: true,
+  },
+  {
+    departureAirport: "LHR",
+    arrivalAirport: "TXL",   
+    aircraft: "Airbus A320",
+    distance: 950,
+    intercontinental: false
+  }
+])
+
+// find with condition
+db.flightData.find({
+  intercontinental: true
+})
+
+// find greater than
+db.flightData.find({
+  distance: {
+    $gt: 900
+  }
+})
+
+// update by id, add 1 property {delayed: false}
+db.flightData.updateOne(
+  { _id: ObjectId('5f6f5611711c072003209069') },
+  {
+    $set: {
+      delayed: false
+    }
+  }
+)
+
+// this one you need to aware of
+// update without $set keyword
+// you overwrite all property
+db.flightData.update(
+  { _id: ObjectId('5f6f5611711c072003209069') },
+  { delayed: true }
+)
+// you'll get 
+/*
+{
+    _id: 5f6f5611711c072003209069,
+    delayed: true
+*/
 db.flightData.find()
