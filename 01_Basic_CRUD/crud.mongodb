@@ -97,4 +97,28 @@ db.flightData.update(
     _id: 5f6f5611711c072003209069,
     delayed: true
 */
+
+// update many with nested (embedded document) key-value
+db.flightData.updateMany({}, {
+  $set: {
+    status: {
+      description: 'on-time',
+      lastUpdated: '1 hour ago',
+      details: {
+        responsible: 'Teerapat'
+      }
+    }
+  }
+})
+
+// access to object
+db.flightData.find({
+  'status.description': 'on-time'
+})
+
+// more deeper
+db.flightData.find({
+  'status.details.responsible': 'Teerapat'
+})
+
 db.flightData.find()
