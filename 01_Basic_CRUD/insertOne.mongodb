@@ -1,0 +1,26 @@
+use('flights');
+
+// insert only one document
+db.flightData.insertOne({
+  departureAirport: 'MUC',
+  arrivalAirport: 'SFO',
+  aircraft: 'Airbus A380',
+  distance: 12000,
+  intercontinental: true,
+});
+
+db.flightData.insertOne({
+  "departureAirport": "LHR",
+  "arrivalAirport": "TXL",
+  "aircraft": "Airbus A320",
+  "distance": 950,
+  "intercontinental": false
+});
+
+// we can data even it does not have same property
+db.flightData.insertOne({
+  "departureAirport": "BKK",
+  "arrivalAirport": "CNX",
+})
+
+db.flightData.find()
