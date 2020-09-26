@@ -1,0 +1,46 @@
+use('flights');
+
+// insert only one document
+db.flightData.insertOne({
+  departureAirport: 'MUC',
+  arrivalAirport: 'SFO',
+  aircraft: 'Airbus A380',
+  distance: 12000,
+  intercontinental: true,
+});
+
+db.flightData.insertOne({
+  departureAirport: "LHR",
+  arrivalAirport: "TXL",
+  aircraft: "Airbus A320",
+  distance: 950,
+  intercontinental: false
+});
+
+// we can data even it does not have same property
+db.flightData.insertOne({
+  "departureAirport": "BKK",
+  "arrivalAirport": "CNX",
+})
+
+// delete one
+db.flightData.deleteOne({
+  departureAirport: 'BKK'
+})
+
+// update one
+db.flightData.updateOne({
+  distance: 12000
+}, { $set: { marker: 'delete' } })
+
+// update many
+db.flightData.updateMany({}, {
+  $set: { marker: 'toDelete' }
+})
+
+// delete many with marker: 'toDelete'
+db.flightData.deleteMany({
+  marker: 'toDelete'
+})
+
+db.flightData.find()
