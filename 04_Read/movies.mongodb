@@ -1,0 +1,3 @@
+use('movieData')
+
+db.movies.find()
