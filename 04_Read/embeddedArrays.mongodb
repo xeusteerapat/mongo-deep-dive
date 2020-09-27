@@ -1,0 +1,55 @@
+use('movieData')
+
+db.movies.find({
+  'rating.average': {
+    $gt: 7
+  }
+})
+
+// find embedded array, if 'Drama' exist in array
+db.movies.find({
+  'genres': 'Drama'
+})
+
+// if you want exact data, means only one single element 'Drama' in array
+db.movies.find({
+  'genres': ['Drama']
+})
+
+// find movies with runtime of 30 and 42 $nin is opposite
+db.movies.find({
+  runtime: {
+    $in: [30, 42]
+  }
+})
+
+// find movies where either rating lower than 3 or higher than 9
+// using $or
+db.movies.find({
+  $or: [
+    { 'rating.average': { $lt: 5 } },
+    { 'rating.average': { $gt: 9.3 } }
+  ]
+})
+
+// $nor not lower than 5 and not higher than 9.3
+db.movies.find({
+  $nor: [
+    { 'rating.average': { $lt: 5 } },
+    { 'rating.average': { $gt: 9.3 } }
+  ]
+}) // 236 docs
+
+// find movies where avg rating greater than 9 and genres is Drama using $and 
+db.movies.find({
+  $and: [
+    { 'rating.average': { $gt: 9 } },
+    { 'genres': 'Drama' }
+  ]
+})
+
+// Alternative syntax
+db.movies.find({ 
+  'rating.average': { $gt: 9 }, 
+  'genres': 'Drama'
+})
