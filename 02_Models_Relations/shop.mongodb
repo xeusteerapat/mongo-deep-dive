@@ -1,0 +1,34 @@
+use('shop')
+
+db.products.insertOne({
+  name: 'Book of Success',
+  price: 12.99
+})
+
+// insert another doc but different schema
+db.products.insertOne({
+  seller: 'Teerapat',
+  details: {
+    type: 'Model'
+  }
+})
+
+/*
+--result--
+[
+  {
+    _id: 5f70298470af7e07d595f74b,
+    seller: 'Teerapat',
+    details: {
+      type: 'Model'
+    }
+  },
+  {
+    _id: 5f70298e9d8fd907d5d577ea,
+    name: 'Book of Success',
+    price: 12.99
+  }
+]
+*/
+
+db.products.find()

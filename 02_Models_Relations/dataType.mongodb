@@ -1,0 +1,19 @@
+use('companies')
+
+db.companyData.insertOne({
+  name: 'Fresh Apples Inc.',
+  isStartup: true,
+  employees: 33,
+  funding: 12334567890123456789,
+  details: {
+    ceo: 'Mark Tawin'
+  },
+  tags: [
+    { title: 'super' },
+    { title: 'perfect' }
+  ],
+  foundingDate: new Date(),
+  insertedAt: new Timestamp()
+})
+
+db.companyData.find()
