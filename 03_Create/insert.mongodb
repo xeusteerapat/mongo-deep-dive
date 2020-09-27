@@ -1,0 +1,40 @@
+use('contactData')
+
+db.persons.insertOne({
+  name: 'Max',
+  age: 30,
+  hobbies: [
+    'Sports',
+    'Cooking'
+  ]
+})
+
+db.persons.insertOne({
+  name: 'Manuel',
+  age: 31,
+  hobbies: [
+    'Cars',
+    'Cooking'
+  ]
+})
+
+// insert many
+db.persons.insertMany([
+  {
+    name: 'Manuel',
+    hobbies: [
+      'Sports',
+      'Yoga'
+    ]
+  },
+  {
+    name: 'Maria',
+    age: 28,
+    hobbies: [
+      'Cooking',
+      'Hiking'
+    ]
+  },
+])
+
+db.persons.find()
