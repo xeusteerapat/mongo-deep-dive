@@ -1,3 +1,49 @@
 use('movieData')
 
-db.movies.find()
+/* Query selectors
+
+- Comparison
+- Evaluation
+- Logical
+- Array
+- Element
+- Comments
+- Geospatial
+
+*/
+
+// Filter by specific field
+db.movies.find({
+  name: "The Last Ship"
+})
+
+// $eq, gt, lt, gte, lte operator
+db.movies.find({
+  runtime: {
+    $eq: 60
+  }
+})
+db.movies.find({
+  runtime: {
+    $gt: 60
+  }
+})
+db.movies.find({
+  runtime: {
+    $lt: 60
+  }
+})
+db.movies.find({
+  runtime: {
+    $gte: 60
+  }
+})
+
+/* Projection Operators
+
+- $
+- $eleMatch
+- $meta
+- $slice
+
+*/
